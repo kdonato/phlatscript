@@ -1,0 +1,90 @@
+"NewPhlatboyz"="NewPhlatboyz";
+"Phlatboyz"="Phlatboyz";
+"PhlatboyzDescription"="A set of tools for marking up Phlatland Sketchup drawings and generating Phlatprinter g-code.";
+
+"CutTool Inside"="CutTool Inside";
+"Phlatboyz CutTool Inside"="Phlatboyz Inside Cut Tool";
+
+"CutTool Outside"="CutTool Outside";
+"Phlatboyz CutTool Outside"="Phlatboyz Outside Cut Tool";
+
+"TabTool"="TabTool";
+"Phlatboyz TabTool"="Phlatboyz Tab Tool";
+
+"Phlatboyz FoldTool"="Phlatboyz Fold Tool";
+"FoldTool"="FoldTool";
+"depth percent"="depth percent";
+
+"GCode"="GCode";
+"Phlatboyz GCode"="Phlatboyz GCode";
+"Generate GCode"="Generate GCode";
+"Save CNC File"="Save CNC File"
+
+"Fold Parameters"="Fold Parameters";
+"Depth Factor"="Depth Factor % ";
+
+"Phlatboyz Homepage"="Phlatboyz Homepage";
+"Go To Phlatboyz Homepage"="Go To Phlatboyz Homepage";
+"Homepage"="Homepage";
+
+"PhlatScript Help"="PhlatScript Help";
+"Open PhlatScript Help"="Open PhlatScript Help";
+"Help"="Help";
+
+"Enter Phlatboyz Parameters"="Enter Phlatboyz Parameters";
+"Enter Parameters"="Enter Parameters";
+"Parameters"="Parameters";
+
+"This is a test message."="This is a test message.";
+"PhlatBoyz"="PhlatBoyz";
+"Materials"="Materials";
+"Materials Menu 1"="One Quarter inch;
+"Materials Menu 2"="One Half inch";
+"Materials Menu 3"="Three Quarter inch";
+"Phlat Edge"="Phlat Edge";
+"Inside Edge"="Inside Edge";
+"Outside Edge"="Outside Edge";
+"Fold Edge"="Fold";
+"Centerline Edge"="Centerline";
+"Show Cuts"="Show Cuts";
+"You must select at least one Edge"="You must select at least one Edge";
+"You must select at least two Edges"="You must select at least two Edges";
+"You must define the material thickness."="You must define the material thickness.";
+"Enter File Name"="Enter File Name";
+"Material Thickness"="Material Thickness";
+"Tab Width"="Tab Width";
+"Tab Depth Factor"="Tab Depth Factor % ";
+"Bit Diameter"="Bit Diameter";
+"Directory Name"="Directory Name";
+"File Name"="File Name";
+"Output File"="Output File";
+"Filename Error"="Filename Error";
+"Clear All Edges"="Clear All Edges";
+"Clear Selected Edges"="Clear Selected Edges";
+"Tab Tool"="Tab Tool";
+"Enter Parameters"="Enter Parameters";
+"Erase Phlatboyz Edges"="Erase Phlatboyz Edges";
+
+"Set Z=0"="Set Z=0";
+
+"Safe x0"="Safe x0";
+"Safe y0"="Safe y0";
+"Safe width"="Safe width";
+"Safe height"="Safe height";
+
+"Phlatboyz SafeTool"="Phlatboyz Safe Area Tool;
+"SafeTool"="Safe Area Tool";
+
+"CenterLineTool"="CenterLineTool";
+"Phlatboyz CenterLineTool"="Phlatboyz CenterLineTool";
+
+"operation_setting_inside_edges"="Setting Inside Edges";
+"operation_setting_outside_edges"="Setting Outside Edges";
+"operation_setting_fold_edges"="Setting Fold Edges";
+"operation_clearing_all_edges"="Clearing All Edges";
+"operation_clearing_selected_edges"="Clearing Selected Edges";
+"operation_set_zequalzero_selected_edges"="Setting Z=0 Selected Edges";
+"operation_set_zequalzero_selected_edges_and_faces"="Setting Z=0 Selected Faces And Edges";
+"operation_set_zequalzero_selected_faces"="Setting Z=0 Selected Faces";
+"operation_erasing_phlatboyz_edges"="Erasing Phlatboyz Edges";
+
