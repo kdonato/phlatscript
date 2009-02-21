@@ -1,0 +1,399 @@
+<html>
+<head>
+<title>Phlatboyz PhlatScript Help</title>
+<style TYPE="text/css">
+<!--
+body, div, span {
+	font-family: Verdana;
+}
+body {
+	background-color: grey;
+	text-align: center;
+	width:80%; 
+	padding-left:10%; 
+	padding-right:10%"
+}
+div.shell {
+	/*background-color: #eee;*/
+	background-color: #bbe1ff;
+	font-size: 1.05em;
+}
+
+div.intro-name {
+	text-align:center;
+	font-size: 1.20em;
+	font-weight: bold;
+	padding-top:25px;
+}
+div.intro-name div {
+	font-size: 0.60em;
+	font-weight: normal;
+}
+div.intro-title {
+	text-align:center;
+	margin:25px;
+	font-size: 1.10em;
+	font-weight: bold;
+	padding-top: 30px;
+}
+div.intro {
+	text-align:left; 
+	margin:20px;
+	padding: 2px;
+	font-size: 0.90em;
+}
+
+.command-image {
+	/*background-color: #ededed;*/
+	background-color: #bbe1ff;
+	height: 100px; 
+	font-weight: bold;
+	font-size: 0.90em;
+	vertical-align:center; 
+	padding:10px;
+	border-top: thin solid white; 
+	border-left: thin solid white; 
+	border-right: thin solid #cccccc; 
+	border-bottom: thin solid #cccccc; 
+}
+.command-description {
+	/*background-color: #ededed;*/
+	background-color: #dddff7;
+	/*margin: 2px;*/
+	padding: 15px;
+	border-top: thin solid white; 
+	border-left: thin solid white; 
+	border-right: thin solid #cccccc; 
+	border-bottom: thin solid #cccccc; 
+	font-size: 0.90em;
+}
+
+.command-title {
+	font-size: 1.00em;
+	font-weight: bold;
+	/*border-bottom: thin solid blue;*/
+	text-align: center;
+	padding-top: 25px;
+	border-top: thin solid white; 
+	border-left: thin solid white; 
+	border-right: thin solid #cccccc; 
+	border-bottom: thin solid #cccccc; 
+}
+.command-subtitle {
+	font-size: 0.70em;
+	font-style: italic;
+}
+-->
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+	<div class="intro-name">Phlatboyz PhlatScripT<div>v0.910</div></div>
+
+	<div class="intro-title">
+	Introduction
+	</div>
+
+	<div>
+		<div class="intro">
+		The PhlatScripT is a set of SketchUp tools that will allow for fold cuts and stepped angles for airplane control surfaces  not to mention a host of other cuts.  
+		Check out the Phlatprinter picture gallery to see everything we would like it to do in the future.
+		</div>
+		<div class="intro">
+		Since the PhlatScripT is released as open source, anyone and everyone is welcome to download it and change it and experiment with it.  
+		All we ask in return is that you keep us updated with your progress and share your add on&rsquo;s with the rest of the world as open source.  
+		The ultimate goal is to create a complete CAM solution directly within SketchUp capable of outputting 3D tool paths and possibly in the future will be the ability to not only output the g-code but control the Phlatprinter as well :)  
+		I&rsquo;m sure the PhlatScripT will be adapted for many different types of machines.  
+		This will be great.  Please share.
+		</div>
+		<div class="intro">
+		The PhlatScripT can not be used for commercial gain or sold in any form.  
+		We are keeping this truly open source.
+		</div>
+	</div>
+		
+
+
+
+	<table>
+		<tr>
+			<th colspan="2" class="command-title">
+			Phlatboyz Command Toolbar
+			</th>
+		</tr>
+		<tr>
+			<td class="command-image">
+				<img src="images/parameters_large.png" title="Enter Phlatboyz Parameters" width="24px" />
+			</td>
+			<td class="command-description">
+				Enter Phlatboyz parameters for material thickness, bit diameter, tab width and the safe origin, width and height.
+				All g-code output is relative to this safe origin and only edges within this safe area will generate g-code.
+				This will allow designs requiring multiple sheets to be contained within one SketchUp file.
+			</td>
+		</tr>
+		
+		<tr>
+			<td class="command-image">
+				<img src="images/cuttool_inside_large.png" title="Phlatboyz Inside Cut Tool" width="24px" />
+			</td>
+			<td class="command-description">
+				Inside Cut Tool - 
+				This tool is used to develop cuts along the inside path of any edge that contains a face. 
+				It differs from the outside cut tool in that the path cut direction will be counter-clockwise.
+				The cut path is offset from the edge by half the bit diameter.
+				<br/><br/>
+				Use the &quot;Shift&quot; key in the event that the cutting edge developed by the tool is on the wrong side of the edge you are selecting.
+				Just press and hold &quot;Shift&quot; prior to clicking and the new edge will switch to the other side and back again when you release it.
+				<br/><br/>
+				Use the &quot;N&quot; key to go to the next face among joining faces when the tool locks in on the wrong edge.
+				&nbsp;
+				<br/><br/>
+				Note: reversing the face (Edit/Face/Reverse Faces) <i>prior</i> to using the Inside Cut Tool will cause the cut direction to be reversed.
+			</td>
+		</tr>
+		
+		<tr>
+			<td class="command-image">
+				<img src="images/cuttool_outside_large.png" title="Phlatboyz Outside Cut Tool" width="24px" />
+			</td>
+			<td class="command-description">
+				Outside Cut Tool - 
+				This tool is used to develop cuts along the outside path of any edge. 
+				It differs from the inside cut tool in that the path cut direction will be clockwise.
+				The cut path is offset from the edge by half the bit diameter.
+				<br/><br/>
+				Use the &quot;Shift&quot; key in the event that the cutting edge developed by the tool is on the wrong side of the edge you are selecting.
+				Just press and hold &quot;Shift&quot; prior to clicking and the new edge will switch to the other side and back again when you release it.
+				<br/><br/>
+				Use the &quot;N&quot; key to go to the next face among joining faces when the tool locks in on the wrong edge.
+				&nbsp;
+				<br/><br/>
+				Note: reversing the face (Edit/Face/Reverse Faces) <i>prior</i> to using the Outide Cut Tool will cause the cut direction to be reversed.
+			</td>
+		</tr>
+		
+		<tr>
+			<td class="command-image">
+				<img src="images/tabtool_large.png" title="Phlatboyz Tab Tool" width="24px" />
+			</td>
+			<td class="command-description">
+				Tab Tool - 
+				This tool is used to place tabs along any inside or outside Phlatboyz edge.
+				The tabs hold the parts in place while the foam sheet moves back and forth in the machine.
+				<br/><br/>
+				This tool uses the tab width and tab depth factors which are defined in the Parameters dialog. 
+				Use that dialog to define the tab tool parameters prior to using the tool; 
+				changing the values in the Parameters dialog will not affect tabs that have already been placed.
+				<br/><br/>
+				When your design is completely cut out a hand tool will be needed to remove the parts that were held in by the tabs.
+				<!--
+				What you do in Artcam once you pick all of your inside/outside/fold edges is it asks you before you save to g-code if you want to tab your parts and you click yes and then you are able to click on the vector lines on the outside or inside vector lines, not the fold lines, and that instantly creates a little tab looking icon which basically looks like the vector line is broker with two half circles on either side of the broken point.  
+
+				But anyway, getting back to the tabbing, it has predefined settings that you can set up for how wide you want your tabs and how deep you want your tabs.  
+				The tabbing predefined setting should be .125 in length (how wide the tab is moving along the vector line) and .2 for the thickness (how far the cutter moves down).
+				That creates a tab that holds your part in place that is approximately 1/8" wide by a little less than 1/4" deep and later they will cut that out with a razor knife to release their part.  
+				Later when people build on the code, they can change the tabbing to whatever they want but our's will be just a small tab they can add wherever they want on the inside or outside cuts
+				-->
+				&nbsp;
+			</td>
+		</tr>
+		
+		<tr>
+			<td class="command-image">
+				<img src="images/foldtool_large.png" title="Phlatboyz Fold Tool" width="24px" />
+			</td>
+			<td class="command-description">
+				Fold Tool - 
+				This tool is used to define a fold line on a currently defined SketchUp edge. 
+				It will not work on any inside or outside cut Phlatboyz edges.
+				<br/><br/>
+				The fold tool has two modes. 
+				The first mode will replace a single edge and shorten both sides of it by a fixed amount.
+				The second mode (called the <i>wide</i> mode) will replace a complete edge.
+				The &quot;w&quot; key is used to toggle between the two modes.
+				<br/><br/>
+				For either mode the tool is in, the depth of the fold cut is controlled by pressing the keyboard &quot;d&quot; key. 
+				This allows toggling through 25%, 50%, 75% and 100% cut depth factors. 
+				This factor will result in the cut depth as a percentage of the material thickness.
+				You can see the current depth factor on the lower right hand side of the screen.
+				If one of those values is not what you actually want, then just type the number directly using the keyboard.
+				&nbsp;
+			</td>
+		</tr>
+		
+		<tr>
+			<td class="command-image">
+				<img src="images/centerlinetool_large.png" title="Phlatboyz Centerline Tool" width="24px" />
+			</td>
+			<td class="command-description">
+				Centerline Tool - 
+				This tool is used to define a center line cut on a currently defined SketchUp edge. 
+				It will not work on any inside or outside cut Phlatboyz edges.
+				<br/><br/>
+				The depth of the centerline cut is the same as the fold tool 
+				which is controlled by pressing the keyboard &quot;d&quot; key. 
+				This allows toggling through 25%, 50%, 75% and 100% cut depth factors. 
+				This factor will result in the cut depth as a percentage of the material thickness.
+				You can see the current depth factor on the lower right hand side of the screen.
+				If one of those values is not what you actually want, then just type the number directly using the keyboard.
+				&nbsp;
+			</td>
+		</tr>
+		
+		<tr>
+			<td class="command-image">
+				<img src="images/safetool_large.png" title="Safetool" width="24px" />
+			</td>
+			<td class="command-description">
+				Safe Area Tool - 
+				Is used to graphically define the safe &quot;PhlatPrinting&quot; area for your model. 
+				This tool uses the safe width and height defined in the parameters dialog and allows dynamic placement of the &quot;safe&quot; rectangle.
+				<br/><br/>
+				G-code output will be generated only from designated Phlatboyz edges within this safe rectangle and will be relative to the safe origin.
+				&nbsp;
+			</td>
+		</tr>
+		
+		<tr>
+			<td class="command-image">
+				<img src="images/gcode_large.png" width="24px" title="Phlatboyz GCode" />
+			</td>
+			<td class="command-description">
+				G-Code - 
+				Generates G-Code to a file that you specify.
+				&nbsp;
+			</td>
+		</tr>
+		
+		<tr>
+			<td class="command-image">
+				<a href="http://www.Phlatboyz.com" title="Go To Phlatboyz Homepage"><img src="images/Phlatboyz_homepage_large.png" width="24px" title="Go To Phlatboyz Homepage" /></a>
+			</td>
+			<td class="command-description">
+				Link to the Phlatboyz homepage.
+				&nbsp;
+			</td>
+		</tr>
+		
+		<tr>
+			<td class="command-image">
+				<img src="images/help_large.png" title="Open Phlatboyz Help" width="24px" />
+			</td>
+			<td class="command-description">
+				Opens this help file.
+				&nbsp;
+			</td>
+		</tr>
+	</table>
+	
+	
+	<table>
+		<tr>
+			<th colspan="2" class="command-title">
+			Phlatboyz Edge Context Menu
+			</th>
+		</tr>
+		<tr>
+			<th colspan="2" class="command-subtitle">
+			These menu items appear in the &quot;Phlat Edge&quot; submenu when right clicking on any edge.
+			</th>
+		</tr>
+		<tr>
+			<td class="command-image">
+				Inside Edge
+				&nbsp;
+			</td>
+			<td class="command-description">
+				Selecting this command will mark selected edges as Phlatboyz Inside edges.
+				No other change will be made to the edge.
+				&nbsp;
+			</td>
+		</tr>
+		<tr>
+			<td class="command-image">
+				Outside Edge
+				&nbsp;
+			</td>
+			<td class="command-description">
+				Selecting this command will mark selected edges as Phlatboyz Outside edges.
+				No other change will be made to the edge.
+				&nbsp;
+			</td>
+		</tr>
+		<tr>
+			<td class="command-image">
+				Fold
+				&nbsp;
+			</td>
+			<td class="command-description">
+				This command will mark the selected edges as Phlatboyz Fold edges. Each edge line segment will be shortened by a fixed amount.
+				&nbsp;
+			</td>
+		</tr>
+		<tr>
+			<td class="command-image">
+				Centerline
+				&nbsp;
+			</td>
+			<td class="command-description">
+				This command will mark the selected edges as Phlatboyz Centerline edges.
+				No other change will be made to the edge (i.e. it will not be shortened as the Fold Tool does.)
+				&nbsp;
+			</td>
+		</tr>
+		<tr>
+			<td class="command-image">
+				Clear Selected Edges
+				&nbsp;
+			</td>
+			<td class="command-description">
+				This command will clear selected edges that are marked as Phlatboyz edges. 
+				The edges will remain but they will no longer be Phlatboyz edges.
+				&nbsp;
+			</td>
+		</tr>
+		<tr>
+			<td class="command-image">
+				Clear All Edges
+				&nbsp;
+			</td>
+			<td class="command-description">
+				Selecting this command will clear all edges in the model that are marked as Phlatboyz edges.
+				The edges will remain but they will no longer be Phlatboyz edges.
+				The command does not depend on the current selection.
+				&nbsp;
+			</td>
+		</tr>
+		<tr>
+			<td class="command-image">
+				Erase Phlatboyz Edges
+				&nbsp;
+			</td>
+			<td class="command-description">
+				Selecting this command will erase all edges in the model which are marked as Phlatboyz edges.
+				The edges will be removed from the model.
+				The command does not depend on the current selection.
+				&nbsp;
+			</td>
+		</tr>
+<!--
+		<tr>
+			<td class="command-image">
+				Set Z=0 Selected Edges
+				&nbsp;
+			</td>
+			<td class="command-description">
+				This command is used to set the z coordinate to 0 on selected faces and edges. 
+				&nbsp;
+			</td>
+		</tr>
+-->
+	</table>
+	
+</div>
+
+
+</body>
+</html>
