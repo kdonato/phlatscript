@@ -50,7 +50,7 @@ def validate_output_file(output_file)
 			result_array[0] = file_dirname + File::SEPARATOR
 			result_array[1] = file_basename
 		else
-			UI.messagebox($phlatboyzStrings.GetString("Filename Error") + ": " + output_file)
+			UI.messagebox($phlatboyzStrings.GetString("Filename Error") + ": " + ((output_file == nil) ? "nil" : output_file))
 		end
 	rescue
 		UI.messagebox "Exception in validate_output_file "+$!
@@ -72,7 +72,9 @@ def get_model_filename_or_default(model=Sketchup.active_model)
 	rescue
 		UI.messagebox "Exception in PhlatboyzMethods.get_model_filename_or_default() "+$!
 	end
-	return model.get_attribute($dict_name, $dict_output_file_name, default_filename)
+	filename = model.get_attribute($dict_name, $dict_output_file_name, default_filename)
+	#UI.messagebox("default_filename="+default_filename+" filename="+filename)
+	return filename
 end
 
 def set_model_options(model)

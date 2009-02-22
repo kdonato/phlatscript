@@ -57,11 +57,14 @@ def enter_file_dialog(model=Sketchup.active_model)
 	output_directory_name = model.get_attribute $dict_name, $dict_output_directory_name, $default_directory_name
 	output_filename = get_model_filename_or_default(model)
 	status = false
-	result_array = validate_output_file(UI.savepanel($phlatboyzStrings.GetString("Save CNC File"), output_directory_name, output_filename))
-	if(result_array != nil)
-		model.set_attribute $dict_name, $dict_output_directory_name, result_array[0]
-		model.set_attribute $dict_name, $dict_output_file_name, result_array[1]
-		status = true
+	result = UI.savepanel($phlatboyzStrings.GetString("Save CNC File"), output_directory_name, output_filename)
+	if(result != nil)
+		result_array = validate_output_file(result)
+		if(result_array != nil)
+			model.set_attribute $dict_name, $dict_output_directory_name, result_array[0]
+			model.set_attribute $dict_name, $dict_output_file_name, result_array[1]
+			status = true
+		end
 	end
 	status
 end
