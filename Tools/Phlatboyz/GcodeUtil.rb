@@ -351,7 +351,9 @@ class GcodeUtil
 				aMill.move(point.x, point.y)
 				aMill.plung(cut_depth)
 			elsif cut_depth_save != cut_depth
-				aMill.retract(cut_depth)
+				if cut_depth > cut_depth_save
+					aMill.retract(cut_depth)   # I added if statement
+				end 
 				aMill.plung(cut_depth)
 			end
 			

@@ -42,6 +42,9 @@ require 'sketchup.rb'
 # - - - - - - - - - - - - - - - - -
 $default_file_name = "gcode_out.cnc"
 $default_directory_name = Dir.pwd + "/"
+$default_Spindle_Speed=15000
+$default_Feed_Rate=500
+$default_Plunge_Feed=250
 $default_material_thickness = 0.25.inch
 $default_tab_width = 0.25.inch
 $default_bit_diameter = 0.125.inch
@@ -69,6 +72,9 @@ $cursor_centerline_tool = "images/cursor_centerlinetool.png"
 #           Dictionary Keys
 # - - - - - - - - - - - - - - - - -
 $dict_name = "phlatboyzdictionary"
+$dict_Spindle_Speed = "Spindle_Speed"
+$dict_Feed_Rate = "Feed_Rate"
+$dict_Plunge_Feed = "Plunge_Feed"
 $dict_material_thickness = "material_thickness"
 $dict_output_file_name = "output_file_name"
 $dict_output_directory_name = "output_directory_name"

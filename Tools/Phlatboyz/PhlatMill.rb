@@ -4,7 +4,12 @@ require 'Phlatboyz/Constants.rb'
 
 class PhlatMill
 
+
+
+
     def initialize(output_file_name=nil, min_max_array=nil)
+	#current_Feed_Rate = model.get_attribute $dict_name, $dict_Feed_Rate , nil 
+	#current_Plunge_Feed = model.get_attribute $dict_name, $dict_Plunge_Feed , nil 
 		@cz = 0.0
 		@cx = 0.0
 		@cy = 0.0
@@ -26,11 +31,11 @@ class PhlatMill
 			@max_z = min_max_array[5]
 		end
 		@no_move_count = 0
-
+		@Spindle_Speed = Sketchup.active_model.get_attribute $dict_name, $dict_Spindle_Speed , nil 
 		@retract_depth = 0.05
 		@mill_depth  = -0.35
-		@speed_curr  = 500
-		@speed_plung = 250
+		@speed_curr  = Sketchup.active_model.get_attribute $dict_name, $dict_Feed_Rate , nil 
+		@speed_plung = Sketchup.active_model.get_attribute $dict_name, $dict_Plunge_Feed , nil 
 		
 		@cmd_linear = "G1" # Linear interpolation
 		@cmd_rapid = "G0" # Rapid positioning
@@ -72,7 +77,7 @@ class PhlatMill
 		cncPrint("G90\n") # G90 - Absolute programming (type B and C systems)
 		cncPrint("G20\n") # G20 - Programming in inches
 		cncPrint("G49\n") # G49 - Tool offset compensation cancel
-		cncPrint("M3 S15000\n") # M3 - Spindle on (CW rotation)   S spindle speed
+		cncPrint("M3 S", @Spindle_Speed, "\n") # M3 - Spindle on (CW rotation)   S spindle speed
 	end 
 
 	def job_finish
@@ -93,42 +98,49 @@ class PhlatMill
 		end
 	end 
   
-	#def move(xo, yo=@cy, zo=@cz, so=@speed_curr, cmd=@cmd_linear)
-	def move(xo, yo=@cy, zo=@cz, so=@speed_curr, cmd=@cmd_rapid) 
-	    #print "( move xo=", xo, " yo=",yo,  " zo=", zo,  " so=", so, ")\n"
+	def move(xo, yo=@cy, zo=@cz, so=@speed_curr, cmd=@cmd_linear) 
+		if @retract_depth == zo
+			cmd=@cmd_rapid
+			so=0
+			@cs=0
+		else
+			cmd=@cmd_linear
+		end
+	    #print "( move xo=", xo, " yo=",yo,  " zo=", zo,  " so=", so,")\n"
+
 	    if (xo == @cx) && (yo == @cy) && (zo == @cz)
 	       #print "(move - already positioned)\n"
 	       @no_move_count += 1
 	    else
 			if (xo > @max_x)
-				cncPrint "(move x=", sprintf("%8.3f",xo), " GT max of ", @max_x, ")\n"
+				cncPrint "(move x=", sprintf("%8.4f",xo), " GT max of ", @max_x, ")\n"
 				xo = @max_x
 			elsif (xo < @min_x)
-				cncPrint "(move x=", sprintf("%8.3f",xo), " LT min of ", @min_x, ")\n"
+				cncPrint "(move x=", sprintf("%8.4f",xo), " LT min of ", @min_x, ")\n"
 				xo = @min_x
 			end
 
 			if (yo > @max_y)
-				cncPrint "(move y=", sprintf("%8.3f",yo), " GT max of ", @max_y, ")\n"
+				cncPrint "(move y=", sprintf("%8.4f",yo), " GT max of ", @max_y, ")\n"
 				yo = @max_y
 			elsif (yo < @min_y)
-				cncPrint "(move y=", sprintf("%8.3f",yo), " LT min of ", @min_y, ")\n"
+				cncPrint "(move y=", sprintf("%8.4f",yo), " LT min of ", @min_y, ")\n"
 				yo = @min_y
 			end
 
 			if (zo > @max_z)
-				cncPrint "(move z=", sprintf("%8.3f",zo), " GT max of ", @max_z, ")\n"
+				cncPrint "(move z=", sprintf("%8.4f",zo), " GT max of ", @max_z, ")\n"
 				zo = @max_z
 			elsif (zo < @min_z)
-				cncPrint "(move x=", sprintf("%8.3f",zo), " LT min of ", @min_z, ")\n"
-				zo = @min_z
+				#cncPrint "(move x=", sprintf("%8.3f",zo), " LT min of ", @min_z, ")\n"
+				#zo = @min_z
 			end
 			
 			command_out = ""
 			command_out += cmd if (cmd != @cc)
-			command_out += (sprintf(" X%8.3f", xo)) if (xo != @cx)
-			command_out += (sprintf(" Y%8.3f", yo)) if (yo != @cy)
-			command_out += (sprintf(" Z%8.3f", zo)) if (zo != @cz)
+			command_out += (sprintf(" X%8.4f", xo)) if (xo != @cx)
+			command_out += (sprintf(" Y%8.4f", yo)) if (yo != @cy)
+			command_out += (sprintf(" Z%8.4f", zo)) if (zo != @cz)
 			command_out += (sprintf(" F%4i", so)) if (so != @cs)
 			command_out += "\n"
 			cncPrint command_out

@@ -4,9 +4,9 @@
 # Menu Item   :   
 # Context Menu:   
 # Usage       :   
-# Date        :   19 Jan 2009
+# Date        :   22 Feb 2009
 # Type        :   
-# Version     :   0.911
+# Version     :   0.912
 #-----------------------------------------------------------------------------
 
 require 'sketchup.rb'
@@ -22,9 +22,9 @@ class SketchupExtension
         @description = description
         @path = filePath
         
-        @version = "0.911"
+        @version = "0.912"
         @creator = "Phlatboyz"
-        @copyright = "01/19/2009, Phlatboyz"
+        @copyright = "02/22/2009, Phlatboyz"
     end
 
     def load
