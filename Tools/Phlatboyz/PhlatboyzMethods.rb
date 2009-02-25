@@ -543,7 +543,7 @@ end
 
 def _test_order_edges
 	edges = selected_edges()
-	# We need at least 1 Edge
+	# We need at least 2 edges
 	if( edges.length < 2 )
 		UI.messagebox($phlatboyzStrings.GetString("You must select at least two Edges"))
 	else
@@ -581,15 +581,9 @@ def _test_order_edges
 			
 		rescue
 			UI.messagebox "Exception in _test_order_edges "+$!
-		nil
+			nil
+		end
 	end
-
-	
-	
-	
-	
-	end
-
 end
 
 
