@@ -42,7 +42,7 @@ require 'sketchup.rb'
 # - - - - - - - - - - - - - - - - -
 $default_file_name = "gcode_out.cnc"
 $default_directory_name = Dir.pwd + "/"
-$default_Spindle_Speed=15000
+$default_Spindle_Speed=8000
 $default_Feed_Rate=500
 $default_Plunge_Feed=250
 $default_material_thickness = 0.25.inch
@@ -66,7 +66,7 @@ $cursor_outside_cuttool_filename = "images/cursor_cuttool_outside.png"
 $cursor_fold_tool = "images/cursor_foldtool.png"
 $cursor_safe_tool = "images/cursor_safetool.png"
 $cursor_centerline_tool = "images/cursor_centerlinetool.png"
-
+$cursor_plunge_tool = "images/plungetool.png"
 
 # - - - - - - - - - - - - - - - - -
 #           Dictionary Keys
@@ -102,6 +102,7 @@ $key_inside_cut = "inside_cut"
 $key_outside_cut = "outside_cut"
 $key_fold_cut = "fold_cut"
 $key_tab_cut = "tab_cut"
+$key_plunge_cut = "plunge_cut"
 
 
 # - - - - - - - - - - - - - - - - -
@@ -135,6 +136,7 @@ $color_tab_drawing = "red"
 $color_safe_drawing = "blue"
 #$color_centerline_cut = "Aqua"
 $color_centerline_cut = "DarkSeaGreen"
+$color_plunge_cut = "Brown"
 
 $rendering_edge_color_mode = 3
 

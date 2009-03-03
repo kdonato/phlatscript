@@ -106,6 +106,9 @@ class GcodeUtil
 		outside_loops = _collect_and_mark_loops_on_face(in_faces, $key_outside_cut)
 		millEdges(in_mill, _collect_and_mark_edges_from_loops(outside_loops, [$key_outside_cut,$key_tab_cut]), in_thick)
 
+		# get plunge areas
+		millEdges(in_mill, _collect_and_mark_edges(in_edges, $key_plunge_cut), in_thick)
+
 		# get any remaining free edges that were missed
 		millEdges(in_mill, _collect_and_mark_edges(in_edges, $key_inside_cut), in_thick)
 		millEdges(in_mill, _collect_and_mark_edges(in_edges, $key_tab_cut), in_thick)
@@ -339,26 +342,39 @@ class GcodeUtil
 
 			#factor = in_wrapped_edge.edge.get_attribute $dict_name, $dict_cut_depth_factor, 0.0 
 			factor = in_wrapped_edge.getFactor()
-			
-			cut_depth = -1.0 * in_material_thickness * factor
 
-			#UI.messagebox(cut_depth)
-
-			point = in_wrapped_edge.startPosition(in_trans)
-			
-			if x_save != point.x || y_save != point.y
+			edgeType = in_wrapped_edge.edge.get_attribute $dict_name, $dict_edge_type
+			if edgeType == $key_plunge_cut
+				point = in_wrapped_edge.startPosition(in_trans)
 				aMill.retract()
-				aMill.move(point.x, point.y)
-				aMill.plung(cut_depth)
-			elsif cut_depth_save != cut_depth
-				if cut_depth > cut_depth_save
-					aMill.retract(cut_depth)   # I added if statement
-				end 
-				aMill.plung(cut_depth)
-			end
+				###cut_depth = in_material_thickness
+				factor = in_wrapped_edge.getFactor()
+				point = in_wrapped_edge.startPosition(in_trans)
 			
-			point = in_wrapped_edge.endPosition(in_trans)
-			aMill.move(point.x,point.y)
+				cut_depth = -1.0 * in_material_thickness * factor
+
+				aMill.plunge(point.x, point.y, cut_depth)
+			else
+				factor = in_wrapped_edge.getFactor()
+				point = in_wrapped_edge.startPosition(in_trans)
+				
+				cut_depth = -1.0 * in_material_thickness * factor 
+				#UI.messagebox(cut_depth)
+
+				if x_save != point.x || y_save != point.y
+					aMill.retract()
+					aMill.move(point.x, point.y)
+					aMill.plung(cut_depth)
+				elsif cut_depth_save != cut_depth
+					if cut_depth > cut_depth_save
+						aMill.retract(cut_depth)   # I added if statement
+					end 
+					aMill.plung(cut_depth)
+				end
+			
+				point = in_wrapped_edge.endPosition(in_trans)
+				aMill.move(point.x,point.y)
+			end
 
 			returnPoint = Geom::Point3d.new(point.x, point.y, cut_depth)
 		rescue

@@ -16,6 +16,7 @@ require 'Phlatboyz/EdgeUtil.rb'
 require 'Phlatboyz/TabTool.rb'
 require 'Phlatboyz/CutTool.rb'
 require 'Phlatboyz/FoldTool.rb'
+require 'Phlatboyz/PlungeTool.rb'
 require 'Phlatboyz/CenterLineTool.rb'
 require 'Phlatboyz/SafeTool.rb'
 
@@ -94,6 +95,17 @@ if not $foldtool_loaded
 	$foldtool_loaded = true
 end
 
+if not $plungetool_loaded
+	cmd = UI::Command.new($phlatboyzStrings.GetString("PlungeTool")) { Sketchup::active_model.select_tool PlungeTool.new }
+	cmd.large_icon = "images/plungetool_large.png"
+	cmd.small_icon = "images/plungetool_small.png"
+	cmd.tooltip = $phlatboyzStrings.GetString("Phlatboyz PlungeTool")
+	cmd.status_bar_text = $phlatboyzStrings.GetString("Phlatboyz PlungeTool")
+	cmd.menu_text = $phlatboyzStrings.GetString("PlungeTool")
+	$phlatboyz_tools_submenu.add_item(cmd)
+	commandToolbar.add_item(cmd)
+	$plungetool_loaded = true
+end
 if not $centerlinetool_loaded
 	cmd = UI::Command.new($phlatboyzStrings.GetString("CenterLineTool")) { Sketchup::active_model.select_tool CenterLineTool.new }
 	cmd.large_icon = "images/centerlinetool_large.png"
@@ -167,8 +179,8 @@ def add_edge_sub_menu(menu_to_add_to)
 	edge_sub_menu.add_item($phlatboyzStrings.GetString("Clear Selected Edges")) { clear_selected_edges }
 	edge_sub_menu.add_item($phlatboyzStrings.GetString("Clear All Edges")) { clear_all_edges }
 	edge_sub_menu.add_item($phlatboyzStrings.GetString("Erase Phlatboyz Edges")) { erase_phlatboyz_edges }
-	edge_sub_menu.add_item($phlatboyzStrings.GetString("Set Z=0 Selected Edges")) { set_z_zero_selected_faces_and_edges }
-	edge_sub_menu.add_item("Test") {_test_order_edges}
+	#edge_sub_menu.add_item($phlatboyzStrings.GetString("Set Z=0 Selected Edges")) { set_z_zero_selected_faces_and_edges }
+	#edge_sub_menu.add_item("Test") {_test_order_edges}
 end
 
 def add_face_sub_menu(menu_to_add_to)

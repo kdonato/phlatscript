@@ -1,6 +1,7 @@
 require 'sketchup.rb'
 
 
+#added Flash's plunge tool 3-2-09
 
 def open_help_file	
 	help_file = Sketchup.find_support_file "help.html", "Tools/Phlatboyz/"
@@ -161,6 +162,9 @@ def set_phlatboyz_edges(edges, key, store_edge_count=false, override_color=nil)
 	elsif(key == $key_tab_cut)
 		cut_depth_factor = get_tab_depth_factor()/100.0
 		material_color = $color_tab_cut
+	elsif(key == $key_plunge_cut)
+		cut_depth_factor = $cut_depth_factor_outside
+		material_color = $color_plunge_cut
 	elsif(key == $key_fold_cut)
 		cut_depth_factor = get_fold_depth_factor()/100.0
 		material_color = $color_fold_cut
@@ -274,7 +278,30 @@ def set_edges_centerline
 
 end
 
+def set_edges_plunge
+	edges = get_selected_edges
+	
+	if edges != nil
+		if enter_set_fold_depth_dialog()
+			model = Sketchup.active_model
+			entities = model.entities
+			
+			model.start_operation $phlatboyzStrings.GetString("operation_setting_plunge_edges")
+			
+			edges.each do | edge |
+				ep1 = edge.start.position
+				ep2 = edge.end.position
+				newedges = Array.new
+				newedge = entities.add_line ep1, ep2
+				newedges << newedge
+				set_phlatboyz_edges(newedges, $key_fold_cut, true, $color_plunge_cut)
+			end
+			model.commit_operation
+			model.selection.remove edges
+		end
+	end
 
+end
 
 def clear_all_edges
 	model = Sketchup.active_model
