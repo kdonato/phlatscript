@@ -214,7 +214,7 @@ if not $phlatboyz_initialized
 	#UI.messagebox("adding model observer")
 
 	model.set_attribute $dict_name, $dict_material_thickness, $default_material_thickness
-	model.set_attribute $dict_name, $dict_output_file_name, $default_file_name
+	#model.set_attribute $dict_name, $dict_output_file_name, $default_file_name
 	model.set_attribute $dict_name, $dict_tab_width, $default_tab_width
 	set_tab_depth_factor($default_tab_depth_factor, model)
 	#model.set_attribute $dict_name, $dict_tab_depth_factor, $default_tab_depth_factor
