@@ -23,6 +23,7 @@ class PlungeTool
 
 	def activate
 		@ip = Sketchup::InputPoint.new
+	    Sketchup::set_status_text "PlungeTool Activated", SB_VCB_LABEL
 		self.reset(nil)
 	end
 	
@@ -43,6 +44,8 @@ class PlungeTool
 	def onLButtonDown(flags, x, y, view)
 		@ip.pick view, x, y
 		self.create_geometry(view)
+		@ip.pick view, x, y # for some reason, ip becomes the next inference point along an edge? - get it again here
+		
 		self.reset(view)
 	    # Clear any inference lock
 	    view.lock_inference
@@ -55,7 +58,6 @@ class PlungeTool
 
 	# Draw the geometry
 	def draw_geometry(view)
-		#UI.messagebox "draw_geometry"
 		view.drawing_color = $color_plunge_cut
 		view.line_width = 3.0
 		begin
@@ -84,18 +86,22 @@ class PlungeTool
 		model.start_operation "Creating Plunge Circle"
 		
 		entities = model.entities
-	
-		center = Geom::Point3d.new(@ip.position.x, @ip.position.y, 0)
-		end_pt = Geom::Point3d.new(@ip.position.x + @radius, @ip.position.y, 0)
-		newedge = entities.add_line(center, end_pt)
-		
-		set_phlatboyz_edges([newedge], $key_plunge_cut, true, $color_plunge_cut)		
+		begin
+			x = @ip.position.x
+			y = @ip.position.y
 
-		vectz = Geom::Vector3d.new(0,0,1)###Z+
-		circleInner = entities.add_circle(center, vectz, @radius)
-		entities.add_face(circleInner)
+			center = Geom::Point3d.new(x, y, 0)
+			end_pt = Geom::Point3d.new(x + @radius, y, 0)
+			newedges = entities.add_edges(center, end_pt)
+			
+			set_phlatboyz_edges(newedges, $key_plunge_cut, true, $color_plunge_cut)		
 
-		
+			vectz = Geom::Vector3d.new(0,0,1)###Z+
+			circleInner = entities.add_circle(center, vectz, @radius)
+			entities.add_face(circleInner)
+		rescue
+			UI.messagebox "Exception in PlungeTool.create_geometry "+$!
+		end
 		
 		model.commit_operation
 	end
