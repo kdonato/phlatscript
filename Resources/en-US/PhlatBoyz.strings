@@ -53,6 +53,10 @@
 "You must select at least two Edges"="You must select at least two Edges";
 "You must define the material thickness."="You must define the material thickness.";
 "Enter File Name"="Enter File Name";
+"Spindle Speed"="Spindle Speed";
+"Feed Rate"="Feed Rate";
+"Plunge Feed"="Plunge Feed";
+"Save CNC File"="Save CNC File";
 "Material Thickness"="Material Thickness";
 "Tab Width"="Tab Width";
 "Tab Depth Factor"="Tab Depth Factor % ";
