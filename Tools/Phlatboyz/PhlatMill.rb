@@ -31,11 +31,11 @@ class PhlatMill
 			@max_z = min_max_array[5]
 		end
 		@no_move_count = 0
-		@Spindle_Speed = Sketchup.active_model.get_attribute $dict_name, $dict_Spindle_Speed , nil 
+		@Spindle_Speed = Sketchup.active_model.get_attribute $dict_name, $dict_Spindle_Speed, $default_Spindle_Speed 
 		@retract_depth = 0.05
 		@mill_depth  = -0.35
-		@speed_curr  = Sketchup.active_model.get_attribute $dict_name, $dict_Feed_Rate , nil 
-		@speed_plung = Sketchup.active_model.get_attribute $dict_name, $dict_Plunge_Feed , nil 
+		@speed_curr  = Sketchup.active_model.get_attribute $dict_name, $dict_Feed_Rate, $default_Feed_Rate 
+		@speed_plung = Sketchup.active_model.get_attribute $dict_name, $dict_Plunge_Feed, $default_Plunge_Feed 
 		
 		@cmd_linear = "G1" # Linear interpolation
 		@cmd_rapid = "G0" # Rapid positioning

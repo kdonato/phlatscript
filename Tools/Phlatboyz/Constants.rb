@@ -42,9 +42,9 @@ require 'sketchup.rb'
 # - - - - - - - - - - - - - - - - -
 $default_file_name = "gcode_out.cnc"
 $default_directory_name = Dir.pwd + "/"
-$default_Spindle_Speed=8000
-$default_Feed_Rate=500
-$default_Plunge_Feed=250
+$default_Spindle_Speed = 8000
+$default_Feed_Rate = 500
+$default_Plunge_Feed = 250
 $default_material_thickness = 0.25.inch
 $default_tab_width = 0.25.inch
 $default_bit_diameter = 0.125.inch

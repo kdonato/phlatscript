@@ -14,7 +14,7 @@ end
 
 class ModelChangeObserver < Sketchup::ModelObserver
  	def onSaveModel(model)
-		#UI.messagebox("onSaveModel()")
+		# This is what is needed to keep from loosing the Phlatboz color when saving the file.
 		set_model_options(model)
 	end
 end

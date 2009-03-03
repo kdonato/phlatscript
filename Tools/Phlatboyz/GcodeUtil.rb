@@ -13,14 +13,11 @@ class GcodeUtil
 		model = Sketchup.active_model
 		if enter_file_dialog(model)
 			# first get the material thickness from the model dictionary
-			material_thickness = Sketchup.active_model.get_attribute $dict_name, $dict_material_thickness, nil 
+			material_thickness = Sketchup.active_model.get_attribute $dict_name, $dict_material_thickness, $default_material_thickness 
 			if(material_thickness)
 
 				output_directory_name = model.get_attribute $dict_name, $dict_output_directory_name, $default_directory_name
-				
 				output_file_name = model.get_attribute $dict_name, $dict_output_file_name, $default_file_name
-				
-				
 				current_bit_diameter = model.get_attribute $dict_name, $dict_bit_diameter, $default_bit_diameter
 
 				# TODO check for existing / on the end of output_directory_name
@@ -344,23 +341,16 @@ class GcodeUtil
 			factor = in_wrapped_edge.getFactor()
 
 			edgeType = in_wrapped_edge.edge.get_attribute $dict_name, $dict_edge_type
-			if edgeType == $key_plunge_cut
-				point = in_wrapped_edge.startPosition(in_trans)
-				aMill.retract()
-				###cut_depth = in_material_thickness
-				factor = in_wrapped_edge.getFactor()
-				point = in_wrapped_edge.startPosition(in_trans)
+			point = in_wrapped_edge.startPosition(in_trans)
+			cut_depth = -1.0 * in_material_thickness * factor
 			
-				cut_depth = -1.0 * in_material_thickness * factor
-
-				aMill.plunge(point.x, point.y, cut_depth)
+			
+			if edgeType == $key_plunge_cut
+				aMill.retract()
+				aMill.move(point.x, point.y)
+				aMill.plung(cut_depth)
 			else
-				factor = in_wrapped_edge.getFactor()
-				point = in_wrapped_edge.startPosition(in_trans)
-				
-				cut_depth = -1.0 * in_material_thickness * factor 
 				#UI.messagebox(cut_depth)
-
 				if x_save != point.x || y_save != point.y
 					aMill.retract()
 					aMill.move(point.x, point.y)
@@ -373,7 +363,7 @@ class GcodeUtil
 				end
 			
 				point = in_wrapped_edge.endPosition(in_trans)
-				aMill.move(point.x,point.y)
+				aMill.move(point.x, point.y)
 			end
 
 			returnPoint = Geom::Point3d.new(point.x, point.y, cut_depth)
