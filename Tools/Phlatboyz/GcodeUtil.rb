@@ -341,9 +341,11 @@ class GcodeUtil
 			factor = in_wrapped_edge.getFactor()
 
 			edgeType = in_wrapped_edge.edge.get_attribute $dict_name, $dict_edge_type
+      #*************************************888
+      
 			point = in_wrapped_edge.startPosition(in_trans)
 			cut_depth = -1.0 * in_material_thickness * factor
-			
+			print  "the factor is",factor,"\n edgeType=", edgeType,"\n the point is ", point ,"\n"
 			
 			if edgeType == $key_plunge_cut
 				aMill.retract()

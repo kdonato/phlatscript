@@ -55,7 +55,7 @@ $default_safe_origin_x = 0.0.inch
 $default_safe_origin_y = 0.0.inch
 $default_safe_width = 42.0.inch
 $default_safe_height = 22.0.inch
-
+$default_comment_Remark = "Comment or Remark"
 # - - - - - - - - - - - - - - - - -
 #           Cursor image files
 # - - - - - - - - - - - - - - - - -
@@ -86,6 +86,7 @@ $dict_bit_diameter = "bit_diameter"
 $dict_fold_depth_factor = "fold_depth_factor"
 $dict_edge_count = "edge_count"
 $dict_tab_depth_factor = "tab_depth_factor"
+$dict_comment_text = "Comment_Remark"
 
 $dict_safe_origin_x = "safe_origin_x"
 $dict_safe_origin_y = "safe_origin_y"

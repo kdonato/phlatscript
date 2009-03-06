@@ -36,7 +36,7 @@ class PhlatMill
 		@mill_depth  = -0.35
 		@speed_curr  = Sketchup.active_model.get_attribute $dict_name, $dict_Feed_Rate, $default_Feed_Rate 
 		@speed_plung = Sketchup.active_model.get_attribute $dict_name, $dict_Plunge_Feed, $default_Plunge_Feed 
-		
+		@Comment=Sketchup.active_model.get_attribute $dict_name, $dict_comment_text, $default_comment_Remark
 		@cmd_linear = "G1" # Linear interpolation
 		@cmd_rapid = "G0" # Rapid positioning
 
@@ -73,10 +73,12 @@ class PhlatMill
 				end
 			end
 		end
+    
 		cncPrint("%\n")
-		cncPrint("G90\n") # G90 - Absolute programming (type B and C systems)
-		cncPrint("G20\n") # G20 - Programming in inches
-		cncPrint("G49\n") # G49 - Tool offset compensation cancel
+    cncPrint("(",@Comment, ")\n")
+		cncPrint("G90 G20 G49\n") # G90 - Absolute programming (type B and C systems)
+		#cncPrint("G20\n") # G20 - Programming in inches
+		#cncPrint("G49\n") # G49 - Tool offset compensation cancel
 		cncPrint("M3 S", @Spindle_Speed, "\n") # M3 - Spindle on (CW rotation)   S spindle speed
 	end 
 
@@ -200,8 +202,8 @@ class PhlatMill
 			@cc = cmd
 		end
 	end
-
-
+def arcmove(xo, yo=@cy, zo=@cz, so=@speed_curr,cmd=@cmd_linear)
+end
 	def home
 		if (@cx == @retract_depth) && (@cy == 0) && (@cz == 0)
 			@no_move_count += 1

@@ -1,4 +1,5 @@
 
+
 "NewPhlatboyz"="NewPhlatboyz";
 "Phlatboyz"="Phlatboyz";
 
@@ -53,6 +54,11 @@
 "You must select at least two Edges"="You must select at least two Edges";
 "You must define the material thickness."="You must define the material thickness.";
 "Enter File Name"="Enter File Name";
+"Spindle Speed"="Spindle Speed";
+"Feed Rate"="Feed Rate";
+"Plunge Feed"="Plunge Feed";
+"Save CNC File"="Save CNC File";
+"Comment Remarks"="Comment Remark";
 "Material Thickness"="Material Thickness";
 "Tab Width"="Tab Width";
 "Tab Depth Factor"="Tab Depth Factor % ";
@@ -76,9 +82,6 @@
 
 "Phlatboyz SafeTool"="Phlatboyz Safe Area Tool;
 "SafeTool"="Safe Area Tool";
-
-"PlungeTool"="PlungeTool";
-"Phlatboyz PlungeTool"="Phlatboyz PlungeTool";
 
 "CenterLineTool"="CenterLineTool";
 "Phlatboyz CenterLineTool"="Phlatboyz CenterLineTool";
