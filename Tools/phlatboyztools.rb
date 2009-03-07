@@ -4,7 +4,7 @@
 # Menu Item   :   
 # Context Menu:   
 # Usage       :   
-# Date        :   22 Feb 2009
+# Date        :   07 Mar 2009
 # Type        :   
 # Version     :   0.912
 #-----------------------------------------------------------------------------
@@ -24,7 +24,7 @@ class SketchupExtension
         
         @version = "0.912"
         @creator = "Phlatboyz"
-        @copyright = "02/22/2009, Phlatboyz"
+        @copyright = "03/07/2009, Phlatboyz"
     end
 
     def load
