@@ -1,15 +1,11 @@
 require 'sketchup.rb'
 require 'Phlatboyz/Constants.rb'
 
-
 class PhlatMill
 
-
-
-
     def initialize(output_file_name=nil, min_max_array=nil)
-	#current_Feed_Rate = model.get_attribute $dict_name, $dict_Feed_Rate , nil 
-	#current_Plunge_Feed = model.get_attribute $dict_name, $dict_Plunge_Feed , nil 
+		#current_Feed_Rate = model.get_attribute $dict_name, $dict_Feed_Rate , nil 
+		#current_Plunge_Feed = model.get_attribute $dict_name, $dict_Plunge_Feed , nil 
 		@cz = 0.0
 		@cx = 0.0
 		@cy = 0.0
@@ -75,7 +71,7 @@ class PhlatMill
 		end
     
 		cncPrint("%\n")
-    cncPrint("(",@Comment, ")\n")
+		cncPrint("(",@Comment, ")\n")
 		cncPrint("G90 G20 G49\n") # G90 - Absolute programming (type B and C systems)
 		#cncPrint("G20\n") # G20 - Programming in inches
 		#cncPrint("G49\n") # G49 - Tool offset compensation cancel
@@ -179,7 +175,6 @@ class PhlatMill
 		end
 	end
 
-
 	def plung(zo=@mill_depth, so=@speed_plung, cmd=@cmd_linear)
 		if (zo == @cz)
 			@no_move_count += 1
@@ -202,8 +197,10 @@ class PhlatMill
 			@cc = cmd
 		end
 	end
-def arcmove(xo, yo=@cy, zo=@cz, so=@speed_curr,cmd=@cmd_linear)
-end
+	
+	def arcmove(xo, yo=@cy, zo=@cz, so=@speed_curr,cmd=@cmd_linear)
+	end
+
 	def home
 		if (@cx == @retract_depth) && (@cy == 0) && (@cz == 0)
 			@no_move_count += 1
